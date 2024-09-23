@@ -1,54 +1,55 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# Plantilla Senasoft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una plantilla para la competición Senasoft. A continuación, se detallan las tecnologías utilizadas y su manera de uso.
 
-Currently, two official plugins are available:
+## Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Biblioteca para construir interfaces de usuario.
+- **TypeScript (TS)**: Superset de JavaScript que añade tipos estáticos.
+- **Vite**: Herramienta de desarrollo rápida y ligera.
+- **React Router DOM**: Librería para manejar rutas en aplicaciones React.
+- **Formik**: Biblioteca para la gestión de formularios en React.
+- **Zod**: Biblioteca para la validación de esquemas.
+- **shadcn**: Conjunto de componentes UI para React.
 
-## Expanding the ESLint configuration
+## Uso
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Instalación
 
-- Configure the top-level `parserOptions` property like this:
+1. Clona el repositorio:
+  ```bash
+  git clone https://github.com/dxncat/plantilla_react.git
+  ```
+2. Navega al directorio del proyecto:
+  ```bash
+  cd plantilla_senasoft
+  ```
+3. Instala las dependencias:
+  ```bash
+  npm install
+  ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Scripts Disponibles
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Construye la aplicación para producción.
+- `npm run serve`: Sirve la aplicación construida.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Estructura del Proyecto
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-=======
-# plantilla_react
->>>>>>> c35e6bb7d148d828afa543c20f9f755d880dee3a
+- `src/`: Contiene el código fuente de la aplicación.
+  - `components/`: Componentes reutilizables.
+  - `pages/`: Páginas de la aplicación.
+  - `forms/`: Formularios gestionados con Formik y validados con Zod.
+
+### Contribución
+
+1. Haz un fork del proyecto.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
+4. Sube tus cambios (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
