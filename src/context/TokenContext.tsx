@@ -1,16 +1,16 @@
-import React, { createContext, useEffect, useState } from "react";
-
+import React, { createContext, useEffect, useState, FC } from "react";
+import { TokenContextType, User } from "@/@types/tokenContext";
 
 interface TokenProviderProps {
     children: React.ReactNode;
 }
 
-type TokenContextType = [string | null, React.Dispatch<React.SetStateAction<string | null>>, (token: string) => void, () => void];
 
 export const TokenContext = createContext<TokenContextType | null>(null);
 
-export const TokenProvider: React.FC<TokenProviderProps> = (props) => {
+export const TokenProvider: FC<TokenProviderProps> = (props) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+    const [user, setUser] = useState<User | null>({ rol: 'ADMIN' })
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -18,9 +18,13 @@ export const TokenProvider: React.FC<TokenProviderProps> = (props) => {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
             }
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, requestOptions)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/hello`, requestOptions)
             if (!response.ok) {
                 setToken(null);
+                setUser({ rol: 'nuloooo' })
+            } else {
+                const data = await response.json()
+                setUser(data)
             }
 
             localStorage.setItem('token', token as string);
@@ -37,7 +41,7 @@ export const TokenProvider: React.FC<TokenProviderProps> = (props) => {
     }
 
     return (
-        <TokenContext.Provider value={[token, setToken, LogIn, LogOut]}>
+        <TokenContext.Provider value={{ token, setToken, LogIn, LogOut, user }}>
             {props.children}
         </TokenContext.Provider>
     )

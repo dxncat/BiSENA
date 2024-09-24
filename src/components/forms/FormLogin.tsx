@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -13,33 +13,53 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useNavigate } from "react-router-dom"
 
 // Definir el esquema para la validación del formulario usando Zod
 const formSchema = z.object({
-    correo: z.string().min(5, {
+    username: z.string().min(5, {
         message: "El correo electrónico debe tener al menos 5 caracteres.",
-    }).email({
-        message: "Por favor, introduce un correo electrónico válido.",
     }),
-    contraseña: z.string().min(2, {
+    password: z.string().min(2, {
         message: "La contraseña de usuario debe tener al menos 2 caracteres.",
     })
 })
 
 const FormLogin = () => {
+
+    const [message, setMessage] = useState<string>('')
+    const navigate = useNavigate()
+
     // Inicializar el formulario con valores predeterminados y el esquema de validación
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             // Valores predeterminados para el formulario
-            correo: "",
-            contraseña: ""
+            username: "",
+            password: ""
         },
     })
 
     // Función para manejar el envío del formulario
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+        const Login = async () => {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values)
+            }
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, requestOptions)
+            const data = await response.json()
+            if (!response.ok) {
+                setMessage(data.message)
+            } else {
+                localStorage.setItem('token', data.token as string);
+                navigate('/')
+            }
+
+        }
+
+        Login()
     }
 
     // Renderizar el formulario
@@ -49,7 +69,7 @@ const FormLogin = () => {
                 {/* Campo para la entrada del correo electrónico */}
                 <FormField
                     control={form.control}
-                    name="correo"
+                    name="username"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel className="capitalize">Correo electrónico</FormLabel>
@@ -63,17 +83,18 @@ const FormLogin = () => {
                 {/* Campo para la entrada de la contraseña */}
                 <FormField
                     control={form.control}
-                    name="contraseña"
+                    name="password"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel className="capitaliza">Contraseña</FormLabel>
                             <FormControl>
-                                <Input placeholder="Escribe aquí tu contraseña." {...field} />
+                                <Input placeholder="Escribe aquí tu contraseña." {...field} type="password" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
+                <p className="text-red-600" >{message}</p>
                 {/* Botón de envío */}
                 <Button type="submit">Iniciar Sesión</Button>
             </form>

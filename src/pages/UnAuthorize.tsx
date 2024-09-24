@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { useNavigate } from 'react-router-dom'
 import { HomeIcon, ShieldAlertIcon } from 'lucide-react'
 
-export default function Unauthorized() {
+export default function Unauthorize() {
     const navigate = useNavigate()
 
     return (

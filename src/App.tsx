@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-// import Unauthorized from "./pages/UnAuthorized";
+import Unauthorize from "./pages/UnAuthorize";
 import Login from "./pages/Login";
+import DashBoard from "./pages/DashBoard";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/unauthorize" element={<Unauthorize />} />
+            <Route path="/dashboard" element={<DashBoard />} />
           </Routes>
         </div>
       </div>
