@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created on Ağustos, 2020
  *
@@ -65,5 +67,15 @@ public class UserServiceImpl implements UserService {
 		final User user = findByUsername(username);
 
 		return UserMapper.INSTANCE.convertToAuthenticatedUserDto(user);
+	}
+
+	@Override
+	public AuthenticatedUserDto findUserByToken(String token) {
+		return null;
+	}
+
+	@Override
+	public List<User> findAllUsers() {
+		return List.of();
 	}
 }

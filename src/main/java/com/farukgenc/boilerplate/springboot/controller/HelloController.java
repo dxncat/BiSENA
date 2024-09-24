@@ -1,9 +1,20 @@
 package com.farukgenc.boilerplate.springboot.controller;
 
+import com.farukgenc.boilerplate.springboot.model.User;
+import com.farukgenc.boilerplate.springboot.model.UserRole;
+import com.farukgenc.boilerplate.springboot.security.dto.AuthenticatedUserDto;
+import com.farukgenc.boilerplate.springboot.security.jwt.JwtTokenService;
+import com.farukgenc.boilerplate.springboot.security.mapper.UserMapper;
+import com.farukgenc.boilerplate.springboot.security.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created on Ağustos, 2020
@@ -13,11 +24,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-	@GetMapping("/hello")
-	@Operation(tags = "Hello Service", description = "When you send token information in the header it just says Hello")
-	public ResponseEntity<String> sayHello() {
+	@Autowired
+	private UserService userService;
 
-		return ResponseEntity.ok("Hello Spring Boot Boilerplate");
+
+
+
+
+
+	public HelloController(UserService userService, JwtTokenService jwtTokenService) {
 	}
 
-}
+	@GetMapping("/hello")
+	@CrossOrigin(origins = "*")
+	@Operation(tags = "Hello Service", description = "When you send token information in the header it just says Hello")
+	public ResponseEntity<String> sayHello(HttpSession httpSession) {
+
+
+
+
+        return ResponseEntity.ok("funciona");
+    }
+
+
+
+
+
+
+	}
+
