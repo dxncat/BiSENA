@@ -3,7 +3,8 @@ import { TokenContext } from "@/context/TokenContext"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Ride from '/ride.svg'
-import { TokenContextType } from "@/@types/tokenContext"
+import { TokenContextType } from "@/@types/types"
+import Map from "@/components/Map"
 
 
 const Home = () => {
@@ -35,6 +36,9 @@ const Home = () => {
             </div>
             <div className='md:col-span-3 mt-16 mr-8'>
                 <img src={Ride} alt="" />
+            </div>
+            <div className="bg-black w-[100vh] h-[100vh]">
+                <Map />
             </div>
         </section>
     )

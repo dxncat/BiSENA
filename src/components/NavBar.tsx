@@ -1,20 +1,23 @@
 import { Link, useLocation } from 'react-router-dom'
 import { HomeIcon, BarChartIcon, BikeIcon } from "lucide-react"
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { TokenContext } from '@/context/TokenContext'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
 import Logo from '/logo.svg'
-import { TokenContextType } from '@/@types/tokenContext'
+import { TokenContextType } from '@/@types/types'
 
 export default function Sidebar() {
 
     const location = useLocation()
     const { user, token } = useContext(TokenContext) as TokenContextType
 
+    useEffect(() => {
+        console.log(user?.rol)
+    }, [user?.rol])
     const navItemsAdmin = [
         { name: "Ciclopaseos", icon: <HomeIcon className="h-4 w-4 mr-2" />, path: "/" },
-        { name: "Bicicletas", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/settings" },
+        { name: "Bicicletas", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/listado-bicicletas" },
         { name: "Dashboard", icon: <BarChartIcon className="h-4 w-4 mr-2" />, path: "/dashboard" },
     ]
 

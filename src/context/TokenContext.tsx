@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, FC } from "react";
-import { TokenContextType, User } from "@/@types/tokenContext";
+import { TokenContextType, User } from "@/@types/types";
 
 interface TokenProviderProps {
     children: React.ReactNode;

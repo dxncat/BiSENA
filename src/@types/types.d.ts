@@ -10,3 +10,12 @@ export type TokenContextType = {
     LogIn: (token: string) => void
     LogOut: () => void
 }
+
+export interface Bicicleta {
+    id: number
+    marca: string
+    color: string
+    estado: 'disponible' | 'en alquiler' | 'mantenimiento' | 'fuera de servicio'
+    precio_alquiler: number
+    regional: string
+}
