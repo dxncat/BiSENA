@@ -28,12 +28,26 @@ public class BicicletaService {
     }
 
     @Transactional
-    public ResponseEntity<Bicicleta> updateEstadoBicicleta(Bicicleta bicicleta, String estado) {
-        bicicleta.setEstado(estado);
-        return ResponseEntity.ok(bicicletaRepository.save(bicicleta));
+    public Optional<Bicicleta> updateEstadoBicicleta(Long id, String estado) {
+        Optional<Bicicleta> bicicletaOpt = bicicletaRepository.findById(id);
+
+        // Check if the Bicicleta exists
+        if (bicicletaOpt.isPresent()) {
+            Bicicleta bicicleta = bicicletaOpt.get();
+            bicicleta.setEstado(estado);
+            bicicletaRepository.save(bicicleta);
+            return Optional.of(bicicleta);
+        } else {
+            return Optional.empty();
+        }
     }
+
 
     public boolean exist(Long id) {
         return bicicletaRepository.existsById(id);
+    }
+
+    public List<Bicicleta> buscarPorEstado(String estado) {
+        return bicicletaRepository.findBicicletaByEstadoContainsIgnoreCase(estado);
     }
 }

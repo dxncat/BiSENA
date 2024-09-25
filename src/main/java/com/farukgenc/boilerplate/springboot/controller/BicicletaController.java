@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bicicletas")
+@CrossOrigin(origins = "*")
 public class BicicletaController {
     @Autowired
     private BicicletaService bicicletaService;
@@ -25,24 +27,30 @@ public class BicicletaController {
         return ResponseEntity.ok(bicicletaService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("/estado/{estado}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Bicicleta> actualizarEstadoBicicleta(@PathVariable Long id ,@RequestBody String estado /* Bicicleta bicicleta */) {
-        if (id != null && this.bicicletaService.exist(id)){
-            Bicicleta bicicleta = this.bicicletaService.findById(id);
-            bicicleta.setEstado(estado);
-            bicicletaService.save(bicicleta);
-            return ResponseEntity.ok(bicicleta);
+    public ResponseEntity<List<Bicicleta>> getBicicletaPorEstado(@PathVariable String estado) {
+        return ResponseEntity.ok(bicicletaService.buscarPorEstado(estado));
+    }
+
+    @PutMapping("/{id}/estado")
+    public ResponseEntity<String> actualizarEstado(@PathVariable Long id, @RequestBody String nuevoEstado) {
+        Optional<Bicicleta> bicicletaOpt = bicicletaService.updateEstadoBicicleta(id, nuevoEstado);
+
+        if (bicicletaOpt.isPresent()) {
+            return ResponseEntity.ok("Estado actualizado con éxito");
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.badRequest().build();
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity<String> createBicicleta(@RequestBody Bicicleta bicicleta) {
+    public ResponseEntity<String> crearBicicleta(@RequestBody Bicicleta bicicleta) {
         bicicletaService.save(bicicleta);
         return ResponseEntity.ok("Bicicleta " + bicicleta.getId() + " created");
     }
-
-
 }
+
+
+

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -27,11 +30,6 @@ public class HelloController {
 	@Autowired
 	private UserService userService;
 
-
-
-
-
-
 	public HelloController(UserService userService, JwtTokenService jwtTokenService) {
 	}
 
@@ -39,17 +37,22 @@ public class HelloController {
 	@CrossOrigin(origins = "*")
 	@Operation(tags = "Hello Service", description = "When you send token information in the header it just says Hello")
 	public ResponseEntity<String> sayHello(HttpSession httpSession) {
-
-
-
-
         return ResponseEntity.ok("funciona");
     }
 
-
-
-
-
-
+	@GetMapping("/userinfo")
+	public ResponseEntity<User> getUserInfo(Principal principal) {
+		Map<String, String> response = new HashMap<>();
+		response.put("username", principal.getName());
+		userService.findByUsername(principal.getName()).getUserRole();
+		return ResponseEntity.ok(userService.findByUsername(principal.getName()));
 	}
+}
+
+
+
+
+
+
+
 
