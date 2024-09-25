@@ -40,4 +40,9 @@ public class CiclopaseoController {
     public ResponseEntity<List<Ciclopaseo>> findAll() {
         return ResponseEntity.status(HttpStatus.FOUND).body(ciclopaseoService.getAllCiclopaseos());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Ciclopaseo> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(ciclopaseoService.findById(id));
+    }
 }

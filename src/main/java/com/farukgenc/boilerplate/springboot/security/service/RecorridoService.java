@@ -16,4 +16,7 @@ public class RecorridoService {
     }
 
 
+    public Recorrido findById(Long id) {
+        return recorridoRepository.findById(id).orElse(null);
+    }
 }

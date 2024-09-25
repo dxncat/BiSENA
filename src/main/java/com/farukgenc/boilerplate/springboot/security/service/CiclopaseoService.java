@@ -21,4 +21,7 @@ public class CiclopaseoService {
     public Ciclopaseo save(Ciclopaseo ciclopaseo) {
         return ciclopaseoRepository.save(ciclopaseo);
     }
+    public Ciclopaseo findById(Long id) {
+        return ciclopaseoRepository.findById(id).get();
+    }
 }

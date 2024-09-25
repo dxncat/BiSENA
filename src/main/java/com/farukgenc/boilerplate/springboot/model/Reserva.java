@@ -28,7 +28,7 @@ public class Reserva {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recorrido_id")
     private Recorrido recorrido;
-    @Column(columnDefinition = "DOUBLE DEFAULT 8000")
+    @Column(columnDefinition = "DEFAULT 8000")
     private double valor;
     @Column
     private Date fecha;

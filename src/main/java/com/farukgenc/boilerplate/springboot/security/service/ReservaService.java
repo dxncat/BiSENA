@@ -2,6 +2,7 @@ package com.farukgenc.boilerplate.springboot.security.service;
 
 import com.farukgenc.boilerplate.springboot.model.Reserva;
 import com.farukgenc.boilerplate.springboot.repository.ReservaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class ReservaService {
     public List<Reserva> reservas() {
         return reservaRepository.findAll();
     }
-
+    @Transactional
     public void crearReserva(Reserva reserva) {
         reservaRepository.save(reserva);
     }
