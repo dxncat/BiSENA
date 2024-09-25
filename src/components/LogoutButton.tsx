@@ -2,12 +2,17 @@ import { LogOutIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { TokenContext } from "@/context/TokenContext"
 import { useContext } from 'react'
+import { TokenContextType } from "@/@types/types"
+import { useNavigate } from "react-router-dom"
 
 function LoginButton() {
-    const { setToken } = useContext(TokenContext) as unknown as { setToken: (token: null) => void }
+    const { setToken, setUser } = useContext(TokenContext) as TokenContextType
+    const navigate = useNavigate()
 
     const handleClick = () => {
         setToken(null)
+        setUser(null)
+        navigate('/')
     }
 
     return (

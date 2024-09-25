@@ -1,6 +1,10 @@
 export interface User {
-    id?: number
-    rol?: string
+    id: number
+    name: string
+    username: string
+    password: string
+    email: string
+    userRole: string
 }
 
 export type TokenContextType = {
@@ -9,6 +13,7 @@ export type TokenContextType = {
     setToken: (token: string | null) => void
     LogIn: (token: string) => void
     LogOut: () => void
+    setUser: (user: User | null) => void
 }
 
 export interface Bicicleta {
@@ -18,4 +23,25 @@ export interface Bicicleta {
     estado: 'disponible' | 'en alquiler' | 'mantenimiento' | 'fuera de servicio'
     precio_alquiler: number
     regional: string
+}
+
+export interface Ciudad {
+    id: number
+    nombre: string
+    longitud: number
+    latitud: number
+}
+
+export interface CicloPaseo {
+    id: number
+    titulo: string
+    descripcion: string
+    fecha: string
+    recorrido: Recorrido
+}
+
+export interface Recorrido {
+    id: number
+    origen: "bogota" | "medellin" | "cali" | "cartagena"
+    destino: "bogota" | "medellin" | "cali" | "cartagena"
 }

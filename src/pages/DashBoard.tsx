@@ -1,7 +1,8 @@
 import { useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '@/context/TokenContext'
-import { TokenContextType } from '@/@types/tokenContext'
+import { TokenContextType } from '@/@types/types'
+
 
 function DashBoard() {
 
@@ -9,8 +10,8 @@ function DashBoard() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(user?.rol)
-        const control = () => user?.rol != 'ADMIN' && navigate('/unauthorize')
+        console.log(user?.userRole)
+        const control = () => user?.userRole != 'ADMIN' && navigate('/unauthorize')
         control()
     }, [user, navigate])
 

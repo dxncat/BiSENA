@@ -1,8 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --radius: 0.5rem
   }
+}
+
+.unset-display {
+  @apply inline;
+  /* Tailwind no tiene una clase específica para unset, pero inline puede ser una alternativa */
 }

@@ -13,12 +13,11 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useNavigate } from "react-router-dom"
 
 // Definir el esquema para la validación del formulario usando Zod
 const formSchema = z.object({
     username: z.string().min(5, {
-        message: "El correo electrónico debe tener al menos 5 caracteres.",
+        message: "El nombre de usuario debe tener al menos 5 caracteres.",
     }),
     password: z.string().min(2, {
         message: "La contraseña de usuario debe tener al menos 2 caracteres.",
@@ -28,7 +27,6 @@ const formSchema = z.object({
 const FormLogin = () => {
 
     const [message, setMessage] = useState<string>('')
-    const navigate = useNavigate()
 
     // Inicializar el formulario con valores predeterminados y el esquema de validación
     const form = useForm<z.infer<typeof formSchema>>({
@@ -54,9 +52,8 @@ const FormLogin = () => {
                 setMessage(data.message)
             } else {
                 localStorage.setItem('token', data.token as string);
-                navigate('/')
+                window.location.href = '/'
             }
-
         }
 
         Login()
@@ -72,9 +69,9 @@ const FormLogin = () => {
                     name="username"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="capitalize">Correo electrónico</FormLabel>
+                            <FormLabel className="capitalize">Usuario</FormLabel>
                             <FormControl>
-                                <Input placeholder="Escribe aquí tu correo electrónico." {...field} />
+                                <Input placeholder="Escribe aquí tu usuario." {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

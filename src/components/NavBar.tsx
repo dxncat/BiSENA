@@ -13,8 +13,7 @@ export default function Sidebar() {
     const { user, token } = useContext(TokenContext) as TokenContextType
 
     useEffect(() => {
-        console.log(user?.rol)
-    }, [user?.rol])
+    }, [user?.userRole])
     const navItemsAdmin = [
         { name: "Ciclopaseos", icon: <HomeIcon className="h-4 w-4 mr-2" />, path: "/" },
         { name: "Bicicletas", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/listado-bicicletas" },
@@ -23,7 +22,7 @@ export default function Sidebar() {
 
     const navItemsUser = [
         { name: "Ciclopaseos", icon: <HomeIcon className="h-4 w-4 mr-2" />, path: "/" },
-        { name: "Renta tu bicicleta", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/settings" },
+        { name: "Renta tu bicicleta", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/renta-bicicletas" },
         { name: "Mi Perfil", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/settings" },
         { name: "Mis viajes", icon: <BikeIcon className="h-4 w-4 mr-2" />, path: "/settings" },
     ]
@@ -34,7 +33,7 @@ export default function Sidebar() {
                 <span className="text-2xl font-bold text-gray-900 flex items-center justify-center space-x-4 w-full"><img src={Logo} alt="logo" title='logo' className='w-[40px]' />BiSENA</span>
             </div>
             <nav className="space-y-2 mb-auto">
-                {user?.rol === 'ADMIN' ? navItemsAdmin.map((item) => (
+                {user?.userRole === 'ADMIN' ? navItemsAdmin.map((item) => (
                     <Link
                         key={item.name}
                         to={item.path}
