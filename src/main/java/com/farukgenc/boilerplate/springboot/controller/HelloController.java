@@ -41,6 +41,7 @@ public class HelloController {
     }
 
 	@GetMapping("/userinfo")
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<User> getUserInfo(Principal principal) {
 		Map<String, String> response = new HashMap<>();
 		response.put("username", principal.getName());

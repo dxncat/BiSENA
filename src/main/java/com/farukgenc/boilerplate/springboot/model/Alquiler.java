@@ -28,7 +28,7 @@ public class Alquiler {
     @ManyToOne
     @JoinColumn(name = "bici_id")
     private Bicicleta bicicleta;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "recorrido_id")
     private Recorrido recorrido;
     @Column(nullable = false)

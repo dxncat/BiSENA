@@ -50,7 +50,7 @@ public class SecurityConfiguration {
 													   .permitAll()
 						.requestMatchers(HttpMethod.GET, "/hello").hasAuthority("ADMIN")
 						.requestMatchers(HttpMethod.PUT, "/bicicletas/{id}").hasAuthority("ADMIN")
-						.requestMatchers(HttpMethod.GET, "/userinfo").hasAuthority("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/alquiler/create").hasAuthority("ADMIN")
 													   .anyRequest()
 													   .authenticated())
 				.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

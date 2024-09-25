@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlquilerService {
     @Autowired
@@ -13,6 +15,12 @@ public class AlquilerService {
 
     @Transactional
     public void save(Alquiler alquiler) {
-        alquilerRepository.save(alquiler);
+        this.alquilerRepository.save(alquiler);
     }
+
+    public List<Alquiler> findAll() {
+        return alquilerRepository.findAll();
+    }
+
+
 }

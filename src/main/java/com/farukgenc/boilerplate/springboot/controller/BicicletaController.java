@@ -24,7 +24,11 @@ public class BicicletaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Bicicleta> getBicicleta(@PathVariable Long id) {
-        return ResponseEntity.ok(bicicletaService.findById(id));
+        try {
+            return ResponseEntity.ok(bicicletaService.findById(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/estado/{estado}")

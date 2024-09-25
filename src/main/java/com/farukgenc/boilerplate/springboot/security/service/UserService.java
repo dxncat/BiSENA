@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface UserService {
 
+	User findById(Long id);
 	User findByUsername(String username);
 
 	RegistrationResponse registration(RegistrationRequest registrationRequest);

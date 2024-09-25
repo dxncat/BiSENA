@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService {
 	private final GeneralMessageAccessor generalMessageAccessor;
 
 	@Override
+	public User findById(Long id) {
+		return null;
+	}
+
+	@Override
 	public User findByUsername(String username) {
 
 		return userRepository.findByUsername(username);

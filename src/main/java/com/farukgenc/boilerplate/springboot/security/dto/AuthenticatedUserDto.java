@@ -23,4 +23,6 @@ public class AuthenticatedUserDto {
 
 	private UserRole userRole;
 
+	private int estrato;
+
 }

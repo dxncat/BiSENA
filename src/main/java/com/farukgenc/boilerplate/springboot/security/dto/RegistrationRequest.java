@@ -33,4 +33,6 @@ public class RegistrationRequest {
 
 	private String userRole;
 
+	private int estrato;
+
 }
